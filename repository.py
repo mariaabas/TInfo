@@ -5,7 +5,6 @@ URL_ASSIG="https://raco.fib.upc.edu/api/horaris/assignatures-titulacio.txt?codi=
 URL_INFO_ASSIG="https://raco.fib.upc.edu/api/horaris/horari-assignatures.txt?"
 URL_ASSIG_JSON="https://raco.fib.upc.edu/api/assignatures/llista.json"
 
-
 def obtenir_assignatures_txt():
 	req_assig=urllib2.Request(URL_ASSIG)
 	response_assig = urllib2.urlopen(req_assig)
@@ -18,18 +17,23 @@ def obtenir_assignatures_json():
 	opener = urllib2.build_opener()
 	f=opener.open(req_assig)
 	json_result=json.loads(f.read())
-	primer = True
-	url="assignatures=GRAU-"
+	primer_element_json = True
+	concatenacio="assignatures=GRAU-"
 	for assig in json_result:
-		if (primer==True):
-			primer = False
-			url = url + assig['idAssig']
+		if (primer_element_json==True):
+			primer_element_json = False
+			concatenacio = concatenacio + assig['idAssig']
 		else:
-			url=url + "&assignatures=GRAU-" + assig['idAssig']
-	return url
+			concatenacio=concatenacio + "&assignatures=GRAU-" + assig['idAssig']
+	return concatenacio
 
 def obtenir_informacio_assignatures():
 	file_aux=open("horari_totes_assignatures.txt", "w")
+	prova=open("prova.txt", "w")
+	prova.write("hola")
+	prova=open("prova.txt", "w")
+	prova.write("adeu")
+	prova.close()
 	concatenacio=obtenir_assignatures_json()
 	url_unio=URL_INFO_ASSIG+concatenacio
 	req=urllib2.Request(url_unio)
