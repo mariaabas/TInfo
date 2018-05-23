@@ -18,7 +18,5 @@ def parse_per_aules():
 		file_bucle.close()
 
 
-	#split la funció que ajuda a treure els espais
-	#aula = assig.split()
 
 

@@ -29,11 +29,6 @@ def obtenir_assignatures_json():
 
 def obtenir_informacio_assignatures():
 	file_aux=open("horari_totes_assignatures.txt", "w")
-	prova=open("prova.txt", "w")
-	prova.write("hola")
-	prova=open("prova.txt", "w")
-	prova.write("adeu")
-	prova.close()
 	concatenacio=obtenir_assignatures_json()
 	url_unio=URL_INFO_ASSIG+concatenacio
 	req=urllib2.Request(url_unio)
