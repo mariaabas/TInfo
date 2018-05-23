@@ -1,10 +1,12 @@
-#import repository as informacio
-#import parse as parsejar_info
+import repository as informacio
+import parse as parsejar_info
 import pantalla as PTE
 import epd7in5b
 import Image
 import ImageDraw
 import ImageFont
+import horari as horari
+import constants
 
 #import imagedata
 
@@ -16,7 +18,8 @@ def main():
     #parsejar_info.parse_per_aules()
     epd = epd7in5b.EPD()
     epd.init()
-    PTE.prova_horari(epd)
+    #PTE.prova_horari(epd)
+    horari.estructura_horari(epd)
     # For simplicity, the arguments are explicit numerical coordinates
     #image = Image.new('L', (EPD_WIDTH, EPD_HEIGHT), 255)    # 255: clear the frame
     #draw = ImageDraw.Draw(image)
@@ -30,6 +33,7 @@ def main():
     #epd.display_frame(epd.get_frame_buffer(image))
 
     #image = Image.open('640x384.bmp')
+    #image = Image.open('foto.bmp')
     #epd.display_frame(epd.get_frame_buffer(image))
 
     # You can get frame buffer from an image or import the buffer directly:
