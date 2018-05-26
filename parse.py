@@ -6,7 +6,7 @@ def comprovar_si_aula_esta(llista_aules, aula):
 	return False
 
 def parse_per_aules():
-	file_assig=open("horari_totes_assignatures", "r")
+	file_assig=open("horari_totes_assignatures.txt", "r")
 	llista_aules_fib = []
 	for assig in file_assig:
 		llista_aula = assig.split()

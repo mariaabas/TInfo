@@ -1,9 +1,7 @@
 import urllib2
 import json
 
-URL_ASSIG="https://raco.fib.upc.edu/api/horaris/assignatures-titulacio.txt?codi=GRAU"
-URL_INFO_ASSIG="https://raco.fib.upc.edu/api/horaris/horari-assignatures.txt?"
-URL_ASSIG_JSON="https://raco.fib.upc.edu/api/assignatures/llista.json"
+
 
 def obtenir_assignatures_txt():
 	req_assig=urllib2.Request(URL_ASSIG)
