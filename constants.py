@@ -16,6 +16,7 @@ PATH_LLETRA='/usr/share/fonts/truetype/freefont/FreeSerif.ttf'
 #LLISTA ELEMENTS
 LIST_DIES=['Dilluns','Dimarts', 'Dimecres', 'Dijous','Divendres' ]
 LIST_HORES=['8-9h', '9-10h', '10-11h','11-12h','12-13h','13-14h','14-15h','15-16h','16-17h','17-18h','18-19h','19-20h']
+LIST_AULES_HORARI=['A5102', 'A5S103', 'A6105']
 
 #MIDES
 MIDA_TITOL=24
@@ -25,6 +26,6 @@ MIDA_LLETRA=14
 #LLARGADA I ALTURES
 ALTURA=4 
 LLARGADA=100 
-CENTRAR_TITOL=100
+CENTRAR_TITOL=200
 EPD_WIDTH = 640
 EPD_HEIGHT = 384

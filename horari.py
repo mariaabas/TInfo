@@ -6,18 +6,18 @@ import constants
 
 def crear_llista_tupla(alt, llarg):
 	llista = []
-    llista.append(alt)
-    llista.append(llarg)
-    tupla = tuple(llista)
-    return tupla
+	llista.append(alt)
+	llista.append(llarg)
+	tupla = tuple(llista)
+	return tupla
 
-def crear_llista_tupla_dies():
+def crear_llista_tupla_dies(draw, font_lletra):
 	llarg = constants.LLARGADA
 	alt = constants.ALTURA+50
 	llista_pos_dies=[]
 	for dia in constants.LIST_DIES:
-		llista_pos_dies.appned(crear_llista_tupla(alt, llarg))
-		llarg=llarg+100
+		llista_pos_dies.append(crear_llista_tupla(alt, llarg))
+		llarg=llarg+115
 	return llista_pos_dies
 
 def crear_llista_tupla_hores():
@@ -25,15 +25,15 @@ def crear_llista_tupla_hores():
 	llista_pos_hores=[]
 	for hora in constants.LIST_HORES:
 		alt = alt+25
-		llista_pos_hores.appned(crear_llista_tupla(10, alt))
-	return llisata_pos_hores
+		llista_pos_hores.append(crear_llista_tupla(10, alt))
+	return llista_pos_hores
 
 def pintar_dies_setmana(draw, font_lletra):
 	llarg = constants.LLARGADA
 	alt = constants.ALTURA+50
 	for dia in constants.LIST_DIES:
 		draw.text((llarg, alt), dia, font= font_lletra, fill=constants.NEGRE)
-		llarg=llarg+100
+		llarg=llarg+115
 	return draw
 
 def pintar_hores(draw, font_lletra):
@@ -43,28 +43,61 @@ def pintar_hores(draw, font_lletra):
 		draw.text((10, alt), hora, font= font_lletra, fill=constants.NEGRE)
 	return draw
 
-def pintar_assignatures(draw, font_lletra, llista_tupla_hores, llista_tupla_dies):
-	file_aula=open("/home/pi/Documents/treball_fi_grau/TInfo/aules/A6206.txt", "r")
+def obtenir_llarg(llista_tupla_dies, llista_aula):
+	return llista_tupla_dies[int(llista_aula[2])-1][1]
+
+def obtenir_alt(llista_tupla_hores, llista_aula):
+	hora = llista_aula[3]
+	if (hora == '08:00'):
+		return llista_tupla_hores[0][1]
+	if (hora == '09:00'):
+		return llista_tupla_hores[1][1]
+	if (hora == '10:00'):
+		return llista_tupla_hores[2][1]
+	if (hora == '11:00'):
+		return llista_tupla_hores[3][1]
+	if (hora == '12:00'):
+		return llista_tupla_hores[4][1]
+	if (hora == '13:00'):
+		return llista_tupla_hores[5][1]
+	if (hora == '14:00'):
+		return llista_tupla_hores[6][1]
+	if (hora == '15:00'):
+		return llista_tupla_hores[7][1]
+	if (hora == '16:00'):
+		return llista_tupla_hores[8][1]
+	if (hora == '17:00'):
+		return llista_tupla_hores[9][1]
+	if (hora == '18:00'):
+		return llista_tupla_hores[10][1]
+	if (hora == '19:00'):
+		return llista_tupla_hores[11][1]
+	if (hora == '20:00'):
+		return llista_tupla_hores[12][1]
+
+def pintar_assignatures(draw, font_lletra, llista_tupla_hores, llista_tupla_dies, elem):
+	file_aula=open("/home/pi/Documents/treball_fi_grau/TInfo/aules/" + elem + ".txt", "r")
 	font_lletra2 = ImageFont.truetype(constants.PATH_LLETRA, constants.MIDA_LLETRA)
-	alt = constants.ALTURA+50
 	for assig in file_aula:
 		llista_aula = assig.split()
-		aux = llista_aula[0:1]
-		mostra =  " ".join(map(str,aux))
-		alt=alt+25
-		draw.text((constants.LLARGADA, alt), mostra, font= font_lletra2, fill=constants.NEGRE)
+		aux = llista_aula[0:2]
+		mostra =  " ".join(map(str,aux)) 
+		mostra = mostra + str(llista_aula[4])
+		alt = obtenir_alt(llista_tupla_hores, llista_aula)
+		llarg = obtenir_llarg(llista_tupla_dies, llista_aula)
+		draw.text((llarg-20, alt), mostra, font= font_lletra2, fill=constants.NEGRE)
 	return draw
 
-def estructura_horari(image):
+def estructura_horari(image, elem):
 	draw = ImageDraw.Draw(image)
 	font_lletra = ImageFont.truetype(constants.PATH_LLETRA, constants.MIDA_LLETRES)
 	font_titol = ImageFont.truetype(constants.PATH_TITOL, constants.MIDA_TITOL)
-	draw.text((constants.CENTRAR_TITOL, 4), 'HORARI AULA A6206', font =font_titol, fill = constants.NEGRE)
+	draw.text((constants.CENTRAR_TITOL, 4), 'HORARI AULA ' + elem, font =font_titol, fill = constants.NEGRE)
 	draw = pintar_dies_setmana(draw, font_lletra)
 	draw = pintar_hores(draw, font_lletra)
 	llista_tupla_hores = crear_llista_tupla_hores()
-	llista_tupla_dies = crear_llista_tupla_dies()
-	draw = pintar_assignatures(draw, font_lletra, llista_tupla_hores, llista_tupla_dies)
+	llista_tupla_dies = crear_llista_tupla_dies(draw, font_lletra)
+	draw = pintar_assignatures(draw, font_lletra, llista_tupla_hores, llista_tupla_dies, elem)
 	return image
 
 
