@@ -10,8 +10,9 @@ VERMELL=127
 BLANC=255
 
 #PATH LLETRES
-PATH_TITOL='/usr/share/fonts/truetype/freefont/FreeSerifBoldItalic.ttf'
-PATH_LLETRA='/usr/share/fonts/truetype/freefont/FreeSerif.ttf'
+PATH_TITOL='/usr/share/fonts/truetype/freefont/FreeMonoBoldOblique.ttf'
+PATH_LLETRA_HORES_DIES='/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf'
+PATH_LLETRA='/usr/share/fonts/truetype/freefont/FreeMono.ttf'
 
 #LLISTA ELEMENTS
 LIST_DIES=['Dilluns','Dimarts', 'Dimecres', 'Dijous','Divendres' ]
