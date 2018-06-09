@@ -120,7 +120,6 @@ def son_iguals(assig, assig_anterior):
 	return False
 
 def pintar_assignatures(draw, font_lletra, llista_tupla_hores, llista_tupla_dies, elem):
-	#file_aula=open("/home/pi/Documents/treball_fi_grau/TInfo/" + elem + ".txt", "r")
 	file_aula=parsejar_info.ordenar_eliminar_duplicat_linies(elem)
 	font_lletra2 = ImageFont.truetype(constants.PATH_LLETRA, constants.MIDA_LLETRA)
 	assig_anterior = file_aula.readline()
@@ -140,6 +139,9 @@ def pintar_assignatures(draw, font_lletra, llista_tupla_hores, llista_tupla_dies
 			alt_line = obtenir_alt(llista_tupla_hores, max_llista)
 			alt = obtenir_alt(llista_tupla_hores, max_llista)
 			llarg = obtenir_llarg(llista_tupla_dies, max_llista)
+			draw.line((llarg_line-12, alt_line+20, llarg_line+97, alt_line+20), fill=constants.VERMELL)
+			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.VERMELL)
+			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.VERMELL)
 			draw.line((llarg_line-12, alt_line+20, llarg_line+97, alt_line+20), fill=constants.BLANC)
 			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.BLANC)
 			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.BLANC)
