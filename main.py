@@ -32,8 +32,8 @@ def proves(epd):
 def main():
     epd = epd7in5b.EPD()
     epd.init()
-    demo(epd)
-   	#proves(epd)
+    #demo(epd)
+    proves(epd)
 
 
 if __name__ == '__main__':

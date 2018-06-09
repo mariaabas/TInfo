@@ -17,6 +17,17 @@ def parse_per_aules():
 		file_bucle.write(assig)
 		file_bucle.close()
 
-
+def ordenar_eliminar_duplicat_linies(elem):
+	lista_definiciones=sorted(file("/home/pi/Documents/treball_fi_grau/TInfo/aules/" + elem + ".txt"))
+	file("aux.txt","w").writelines(lista_definiciones)
+	lines_seen = set() # holds lines already seen
+	outfile = open(elem + ".txt", "w")
+	for line in open("aux.txt", "r"):
+		if line not in lines_seen: # not a duplicate
+			outfile.write(line)
+			lines_seen.add(line)
+	outfile.close()
+	file_aula=open("/home/pi/Documents/treball_fi_grau/TInfo/"+ elem + ".txt", "r")
+	return file_aula
 
 
