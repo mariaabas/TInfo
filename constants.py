@@ -12,7 +12,7 @@ BLANC=255
 #PATH LLETRES
 PATH_TITOL='/usr/share/fonts/truetype/freefont/FreeMonoBoldOblique.ttf'
 PATH_LLETRA_HORES_DIES='/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf'
-PATH_LLETRA='/usr/share/fonts/truetype/freefont/FreeMono.ttf'
+PATH_LLETRA='/usr/share/fonts/truetype/freefont/FreeSans.ttf'
 
 #LLISTA ELEMENTS
 LIST_DIES=['Dilluns','Dimarts', 'Dimecres', 'Dijous','Divendres' ]
@@ -21,8 +21,8 @@ LIST_AULES_HORARI=['A5102', 'A5S103', 'A6105']
 
 #MIDES
 MIDA_TITOL=24
-MIDA_LLETRES=16
-MIDA_LLETRA=14
+MIDA_LLETRES=17
+MIDA_LLETRA=13
 
 #LLARGADA I ALTURES
 ALTURA=4 

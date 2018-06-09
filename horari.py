@@ -127,7 +127,7 @@ def pintar_assignatures(draw, font_lletra, llista_tupla_hores, llista_tupla_dies
 	mostra = transformar_format(assig_anterior)
 	llarg = obtenir_llarg(llista_tupla_dies, assig_anterior.split())
 	alt = obtenir_alt(llista_tupla_hores,  assig_anterior.split())
-	draw.text((llarg-8, alt+13), mostra, font= font_lletra2, fill=constants.NEGRE)
+	draw.text((llarg-10, alt+13), mostra, font= font_lletra2, fill=constants.NEGRE)
 	for assig in file_aula:
 		llista_aula = assig.split()
 		llista_aula_ant = assig_anterior.split()
@@ -141,12 +141,12 @@ def pintar_assignatures(draw, font_lletra, llista_tupla_hores, llista_tupla_dies
 			alt = obtenir_alt(llista_tupla_hores, max_llista)
 			llarg = obtenir_llarg(llista_tupla_dies, max_llista)
 			draw.line((llarg_line-12, alt_line+20, llarg_line+97, alt_line+20), fill=constants.BLANC)
-			draw.text((llarg-8, alt), mostra, font= font_lletra2, fill=constants.BLANC)
-			draw.text((llarg-8, alt), mostra, font= font_lletra2, fill=constants.BLANC)
-			draw.text((llarg_line-8,  alt_line+13), mostra, font= font_lletra2, fill=constants.NEGRE)
+			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.BLANC)
+			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.BLANC)
+			draw.text((llarg_line-10,  alt_line+13), mostra, font= font_lletra2, fill=constants.NEGRE)
 		else:
 			mostra = transformar_format(assig)
-			draw.text((llarg-8, alt), mostra, font= font_lletra2, fill=constants.NEGRE)
+			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.NEGRE)
 		assig_anterior = assig
 	return draw
 
