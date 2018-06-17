@@ -5,166 +5,154 @@ import ImageFont
 import constants
 import parse as parsejar_info
 
-def crear_llista_tupla(llarg, alt):
+def crearLlistaTupla(llarg, alt):
 	llista = []
 	llista.append(llarg)
 	llista.append(alt)
 	tupla = tuple(llista)
 	return tupla
 
-def crear_llista_tupla_dies(draw, font_lletra):
+def crearLlistaTuplaDies():
 	llarg = constants.LLARGADA
-	alt = constants.ALTURA+50
-	llista_pos_dies=[]
+	alt = constants.ALTURA+constants.ESPAI_Y
+	llistaPosDies=[]
 	for dia in constants.LIST_DIES:
-		llista_pos_dies.append(crear_llista_tupla(llarg, alt))
-		llarg=llarg+110
-	return llista_pos_dies
+		llistaPosDies.append(crearLlistaTupla(llarg, alt))
+		llarg=llarg+constants.ESPAI_X 
+	return llistaPosDies
 
-def crear_llista_tupla_hores():
-	alt=constants.ALTURA+50
-	llista_pos_hores=[]
+def crearLlistaTuplaHores():
+	alt=constants.ALTURA+constants.ESPAI_Y
+	llistaPosHores=[]
 	for hora in constants.LIST_HORES:
 		alt = alt+25
-		llista_pos_hores.append(crear_llista_tupla(10, alt))
-	return llista_pos_hores
+		llistaPosHores.append(crearLlistaTupla(10, alt))
+	return llistaPosHores
 
-def pintar_dies_setmana(draw, font_lletra):
+def pintarDiesSetmana(draw, font_lletra):
 	llarg = constants.LLARGADA
-	alt = constants.ALTURA+50
+	alt = constants.ALTURA+constants.ESPAI_Y
 	for dia in constants.LIST_DIES:
 		draw.text((llarg, alt), dia, font= font_lletra, fill=constants.NEGRE)
-		llarg=llarg+110
+		llarg=llarg+constants.ESPAI_X 
 	return draw
 
-def pintar_hores(draw, font_lletra):
-	alt=constants.ALTURA+50
+def pintarHores(draw, fontLletra):
+	alt=constants.ALTURA+constants.ESPAI_Y
 	for hora in constants.LIST_HORES:
 		alt = alt+25
-		draw.text((10, alt), hora, font= font_lletra, fill=constants.NEGRE)
+		draw.text((10, alt), hora, font= fontLletra, fill=constants.NEGRE)
 	return draw
 
-def obtenir_llarg(llista_tupla_dies, llista_aula):
-	return llista_tupla_dies[int(llista_aula[2])-1][0]
+def obtenirLlarg(llistaTuplaDies, llistaAula):
+	return llistaTuplaDies[int(llistaAula[2])-1][0]
 
-def obtenir_alt(llista_tupla_hores, llista_aula):
-	hora = llista_aula[3]
+def obtenirAlt(llistaTuplaHores, llistaAula):
+	hora = llistaAula[3]
 	if (hora == '08:00'):
-		return llista_tupla_hores[0][1]
+		return llistaTuplaHores[0][1]
 	if (hora == '09:00'):
-		return llista_tupla_hores[1][1]
+		return llistaTuplaHores[1][1]
 	if (hora == '10:00'):
-		return llista_tupla_hores[2][1]
+		return llistaTuplaHores[2][1]
 	if (hora == '11:00'):
-		return llista_tupla_hores[3][1]
+		return llistaTuplaHores[3][1]
 	if (hora == '12:00'):
-		return llista_tupla_hores[4][1]
+		return llistaTuplaHores[4][1]
 	if (hora == '13:00'):
-		return llista_tupla_hores[5][1]
+		return llistaTuplaHores[5][1]
 	if (hora == '14:00'):
-		return llista_tupla_hores[6][1]
+		return llistaTuplaHores[6][1]
 	if (hora == '15:00'):
-		return llista_tupla_hores[7][1]
+		return llistaTuplaHores[7][1]
 	if (hora == '16:00'):
-		return llista_tupla_hores[8][1]
+		return llistaTuplaHores[8][1]
 	if (hora == '17:00'):
-		return llista_tupla_hores[9][1]
+		return llistaTuplaHores[9][1]
 	if (hora == '18:00'):
-		return llista_tupla_hores[10][1]
+		return llistaTuplaHores[10][1]
 	if (hora == '19:00'):
-		return llista_tupla_hores[11][1]
+		return llistaTuplaHores[11][1]
 
-"""def pintar_assignatures(draw, font_lletra, llista_tupla_hores, llista_tupla_dies, elem):
-	file_aula=open("/home/pi/Documents/treball_fi_grau/TInfo/aules/" + elem + ".txt", "r")
-	font_lletra2 = ImageFont.truetype(constants.PATH_LLETRA, constants.MIDA_LLETRA)
-	for assig in file_aula:
-		llista_aula = assig.split()
-		aux = llista_aula[0:2]
-		mostra =  " ".join(map(str,aux)) 
-		mostra = mostra + str(llista_aula[4])
-		alt = obtenir_alt(llista_tupla_hores, llista_aula)
-		llarg = obtenir_llarg(llista_tupla_dies, llista_aula)
-		draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.NEGRE)
-	return draw"""
 
-def pintar_linies_verticals(draw, llista_tupla_dies, llista_tupla_hores):
-	for elem in llista_tupla_dies:
+def pintarLiniesVerticals(draw, llistaTuplaDies, llistaTuplaHores):
+	for elem in llistaTuplaDies:
 		llarg = elem[0]-13
-		alt = llista_tupla_hores[0][1]
-		alt2 = llista_tupla_hores[11][1]+20
+		alt = llistaTuplaHores[0][1]
+		alt2 = llistaTuplaHores[11][1]+20
 		draw.line((llarg,alt, llarg, alt2), fill = constants.NEGRE)
 	return draw
-def pintar_linies_horitzontals(draw, llista_tupla_dies, llista_tupla_hores):
-	for elem in llista_tupla_hores:
+
+def pintarLiniesHoritzontals(draw, llistaTuplaDies, llistaTuplaHores):
+	for elem in llistaTuplaHores:
 		alt = elem[1]+20
-		llarg = llista_tupla_hores[0][1]-70
-		llarg2 = llista_tupla_dies[4][0]+100
+		llarg = llistaTuplaHores[0][1]-70
+		llarg2 = llistaTuplaDies[4][0]+100
 		draw.line((llarg,alt, llarg2, alt), fill = constants.NEGRE)
 	return draw
-def transformar_format(assig):
-	llista_aula = assig.split()
-	aux = llista_aula[0:2]
+
+def transformarFormat(assig):
+	llistaAula = assig.split()
+	aux = llistaAula[0:2]
 	mostra =  " ".join(map(str,aux)) 
-	mostra = mostra + str(llista_aula[4])
+	mostra = mostra + str(llistaAula[4])
 	return mostra
-def son_iguals(assig, assig_anterior):
-	a_split = assig.split()
-	anat_split = assig_anterior.split()
-	str_assig = str(a_split[0]) + str(a_split[1]) + str(a_split[2]) + str(a_split[4])
-	str_assig_anterior =str(anat_split[0]) + str(anat_split[1]) + str(anat_split[2]) + str(anat_split[4])
-	if (str_assig == str_assig_anterior):
-		if (str(a_split[3]) == str(anat_split[3])):
+
+def sonIguals(assig, assigAnterior):
+	aSplit = assig.split()
+	anatSplit = assigAnterior.split()
+	strAssig = str(aSplit[0]) + str(aSplit[1]) + str(aSplit[2]) + str(aSplit[4])
+	strAssigAnterior =str(anatSplit[0]) + str(anatSplit[1]) + str(anatSplit[2]) + str(anatSplit[4])
+	if (strAssig == strAssigAnterior):
+		if (str(aSplit[3]) == str(anatSplit[3])):
 			return False
 		else:
 			return True
 	return False
 
-def pintar_assignatures(draw, font_lletra, llista_tupla_hores, llista_tupla_dies, elem):
-	file_aula=parsejar_info.ordenar_eliminar_duplicat_linies(elem)
-	font_lletra2 = ImageFont.truetype(constants.PATH_LLETRA, constants.MIDA_LLETRA)
-	assig_anterior = file_aula.readline()
-	mostra = transformar_format(assig_anterior)
-	llarg = obtenir_llarg(llista_tupla_dies, assig_anterior.split())
-	alt = obtenir_alt(llista_tupla_hores,  assig_anterior.split())
-	draw.text((llarg-10, alt+13), mostra, font= font_lletra2, fill=constants.NEGRE)
-	for assig in file_aula:
-		llista_aula = assig.split()
-		llista_aula_ant = assig_anterior.split()
-		alt = obtenir_alt(llista_tupla_hores, llista_aula)
-		llarg = obtenir_llarg(llista_tupla_dies, llista_aula)
-		if (son_iguals(assig, assig_anterior)== True):
-			max_llista = llista_aula_ant
-			mostra = transformar_format(assig_anterior)
-			llarg_line = obtenir_llarg(llista_tupla_dies, max_llista)
-			alt_line = obtenir_alt(llista_tupla_hores, max_llista)
-			alt = obtenir_alt(llista_tupla_hores, max_llista)
-			llarg = obtenir_llarg(llista_tupla_dies, max_llista)
-			draw.line((llarg_line-12, alt_line+20, llarg_line+97, alt_line+20), fill=constants.VERMELL)
-			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.VERMELL)
-			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.VERMELL)
-			draw.line((llarg_line-12, alt_line+20, llarg_line+97, alt_line+20), fill=constants.BLANC)
-			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.BLANC)
-			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.BLANC)
-			draw.text((llarg_line-10,  alt_line+13), mostra, font= font_lletra2, fill=constants.NEGRE)
+def pintarAssignatures(draw, fontLletra, llistaTuplaHores, llistaTuplaDies, elem):
+	fileAula=parsejar_info.ordenarEliminarDuplicatLinies(elem)
+	fontLletra2 = ImageFont.truetype(constants.PATH_LLETRA, constants.MIDA_LLETRA)
+	assigAnterior = fileAula.readline()
+	mostra = transformarFormat(assigAnterior)
+	llarg = obtenirLlarg(llistaTuplaDies, assigAnterior.split())
+	alt = obtenirAlt(llistaTuplaHores,  assigAnterior.split())
+	draw.text((llarg-10, alt+13), mostra, font= fontLletra2, fill=constants.NEGRE)
+	for assig in fileAula:
+		llistaAula = assig.split()
+		llistaAulaAnt = assigAnterior.split()
+		alt = obtenirAlt(llistaTuplaHores, llistaAula)
+		llarg = obtenirLlarg(llistaTuplaDies, llistaAula)
+		if (sonIguals(assig, assigAnterior)== True):
+			maxLlista = llistaAulaAnt
+			mostra = transformarFormat(assigAnterior)
+			llargLine = obtenirLlarg(llistaTuplaDies, maxLlista)
+			altLine = obtenirAlt(llistaTuplaHores, maxLlista)
+			alt = obtenirAlt(llistaTuplaHores, maxLlista)
+			llarg = obtenirLlarg(llistaTuplaDies, maxLlista)
+			draw.line((llargLine-12, altLine+20, llargLine+97, altLine+20), fill=constants.BLANC)
+			draw.text((llarg-10, alt), mostra, font= fontLletra2, fill=constants.BLANC)
+			draw.text((llarg-10, alt), mostra, font= fontLletra2, fill=constants.BLANC)
+			draw.text((llargLine-10,  altLine+13), mostra, font= fontLletra2, fill=constants.NEGRE)
 		else:
-			mostra = transformar_format(assig)
-			draw.text((llarg-10, alt), mostra, font= font_lletra2, fill=constants.NEGRE)
-		assig_anterior = assig
+			mostra = transformarFormat(assig)
+			draw.text((llarg-10, alt), mostra, font= fontLletra2, fill=constants.NEGRE)
+		assigAnterior = assig
 	return draw
 
-def estructura_horari(image, elem):
+def estructuraHorari(image, elem):
 	draw = ImageDraw.Draw(image)
-	font_lletra_hores_dies = ImageFont.truetype(constants.PATH_LLETRA_HORES_DIES, constants.MIDA_LLETRES)
-	font_titol = ImageFont.truetype(constants.PATH_TITOL, constants.MIDA_TITOL)
-	font_lletra = ImageFont.truetype(constants.PATH_LLETRA, constants.MIDA_LLETRES)
-	draw.text((constants.CENTRAR_TITOL, 4), 'HORARI AULA ' + elem, font =font_titol, fill = constants.NEGRE)
-	draw = pintar_dies_setmana(draw, font_lletra_hores_dies)
-	draw = pintar_hores(draw, font_lletra_hores_dies)
-	llista_tupla_hores = crear_llista_tupla_hores()
-	llista_tupla_dies = crear_llista_tupla_dies(draw, font_lletra_hores_dies)
-	draw = pintar_linies_verticals(draw, llista_tupla_dies, llista_tupla_hores)
-	draw = pintar_linies_horitzontals(draw, llista_tupla_dies, llista_tupla_hores)
-	draw = pintar_assignatures(draw, font_lletra, llista_tupla_hores, llista_tupla_dies, elem)
+	fontLletraHoresDies = ImageFont.truetype(constants.PATH_LLETRA_HORES_DIES, constants.MIDA_LLETRES)
+	fontTitol = ImageFont.truetype(constants.PATH_TITOL, constants.MIDA_TITOL)
+	fontLletra = ImageFont.truetype(constants.PATH_LLETRA, constants.MIDA_LLETRES)
+	draw.text((constants.CENTRAR_X, constants.CENTRAR_Y), 'HORARI AULA ' + elem, font =fontTitol, fill = constants.NEGRE)
+	draw = pintarDiesSetmana(draw, fontLletraHoresDies)
+	draw = pintarHores(draw, fontLletraHoresDies)
+	llistaTuplaHores = crearLlistaTuplaHores()
+	llistaTuplaDies = crearLlistaTuplaDies()
+	draw = pintarLiniesVerticals(draw, llistaTuplaDies, llistaTuplaHores)
+	draw = pintarLiniesHoritzontals(draw, llistaTuplaDies, llistaTuplaHores)
+	draw = pintarAssignatures(draw, fontLletra, llistaTuplaHores, llistaTuplaDies, elem)
 	return image
 
 

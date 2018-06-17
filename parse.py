@@ -1,33 +1,33 @@
 
-def comprovar_si_aula_esta(llista_aules, aula):
-	for elem in llista_aules:
+def comprovarSiAulaEsta(llistaAules, aula):
+	for elem in llistaAules:
 		if (elem==aula):
 			return True
 	return False
 
-def parse_per_aules():
-	file_assig=open("horari_totes_assignatures.txt", "r")
-	llista_aules_fib = []
-	for assig in file_assig:
-		llista_aula = assig.split()
-		esta = comprovar_si_aula_esta(llista_aules_fib, llista_aula[len(llista_aula)-1])
+def parsePerAules():
+	fileAssig=open("horari_totes_assignatures.txt", "r")
+	llistaAulesFib = []
+	for assig in fileAssig:
+		llistaAula = assig.split()
+		esta = comprovarSiAulaEsta(llistaAulesFib, llistaAula[len(llistaAula)-1])
 		if (esta==False):
-			llista_aules_fib.append(llista_aula[len(llista_aula)-1])
-		file_bucle=open("./aules/" + llista_aula[len(llista_aula)-1] + ".txt","a")
-		file_bucle.write(assig)
-		file_bucle.close()
+			llistaAulesFib.append(llistaAula[len(llistaAula)-1])
+		fileBucle=open("./aules/" + llistaAula[len(llistaAula)-1] + ".txt","a")
+		fileBucle.write(assig)
+		fileBucle.close()
 
-def ordenar_eliminar_duplicat_linies(elem):
-	lista_definiciones=sorted(file("/home/pi/Documents/treball_fi_grau/TInfo/aules/" + elem + ".txt"))
-	file("aux.txt","w").writelines(lista_definiciones)
-	lines_seen = set() # holds lines already seen
-	outfile = open(elem + ".txt", "w")
-	for line in open("aux.txt", "r"):
-		if line not in lines_seen: # not a duplicate
-			outfile.write(line)
-			lines_seen.add(line)
-	outfile.close()
-	file_aula=open("/home/pi/Documents/treball_fi_grau/TInfo/"+ elem + ".txt", "r")
-	return file_aula
+def ordenarEliminarDuplicatLinies(elem):
+	listaAssignatures=sorted(file("/home/pi/Documents/treball_fi_grau/TInfo/aules/" + elem + ".txt"))
+	file("aux.txt","w").writelines(listaAssignatures)
+	liniesVistes = set()
+	fileSortida = open("/home/pi/Documents/treball_fi_grau/TInfo/aules/" + elem + ".txt", "w")
+	for linia in open("aux.txt", "r"):
+		if linia not in liniesVistes: 
+			fileSortida.write(linia)
+			liniesVistes.add(linia)
+	fileSortida.close()
+	fileAula=open("/home/pi/Documents/treball_fi_grau/TInfo/aules/" + elem + ".txt", "r")
+	return fileAula
 
 

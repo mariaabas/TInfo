@@ -27,6 +27,8 @@ def demo(epd):
 
 def proves(epd):
 	image = PTE.pintar_horari_aules(constants.LIST_AULES_HORARI[0])
+	#image = PTE.pintar_logo_fib()
+	#image = PTE.pintar_punta_fangar()
 	epd.display_frame(epd.get_frame_buffer(image))
 
 def main():
