@@ -1,5 +1,3 @@
-####Tinfo
-
 ### Design a system composed by microcontroller and low consumption e-ink display for information panels - (Bachelor’s Thesis)
 
 * Aim: displaying information in an innovative and efficient way, with low energy consumption.
